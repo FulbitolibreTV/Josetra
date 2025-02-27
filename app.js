@@ -7,9 +7,11 @@ async function traducirTexto() {
     }
 
     try {
-        const proxy = 'https://cors-anywhere.herokuapp.com/';
+        // Usamos AllOrigins como proxy para evitar el problema de CORS
+        const proxy = 'https://api.allorigins.win/raw?url=';
         const apiURL = 'https://api.lecto.ai/v1/translate/text';
-        const respuesta = await fetch(proxy + apiURL, {
+        
+        const respuesta = await fetch(proxy + encodeURIComponent(apiURL), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
